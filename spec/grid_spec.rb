@@ -4,8 +4,8 @@ describe Grid do
   let(:puzzle) { '015003002000100906270068430490002017501040380003905000900081040860070025037204600' }
   let(:grid) { Grid.new(puzzle) }
 
+
   context 'initialize' do
-    
 
     it 'should have 81 cells' do
       expect(grid.cells.size).to eq 81
@@ -20,12 +20,12 @@ describe Grid do
     end
 
     it 'knows when it is solved' do
-      grid.cells.each {|cell| cell.solve}
-      expect(grid).to be_solved
+      solved_grid = Grid.new('123')
+      expect(solved_grid).to be_solved
     end
   end
 
-  context 'Rows, cols and squares' do
+  context 'Rows, cols and boxes' do
    
     it 'knows each row has 9 cells' do
       expect(grid.rows.first.size).to eq 9
@@ -58,12 +58,37 @@ describe Grid do
     it 'knows first box' do
       expect(grid.boxes.first[7].value).to eq 7
     end
+  end
+
+  context 'Solver' do
+    it 'should correctly assign neighbours to a cell' do
+      grid.generate_neigbours(grid.cells.first)
+      expect(grid.cells.first.neighbours).to eq [1,5,0,3,2,4,9,8,7].sort
+    end
+    it 'candidates should be generated correctly' do
+      grid.generate_neigbours(grid.cells.first)
+      expect(grid.cells.first.candidates).to eq [6]
+    end
+    it 'cell should be able to solve itself when there is 1 candidate' do
+      grid.generate_neigbours(grid.cells.first)
+      grid.cells.first.solve
+      expect(grid.cells.first.value).to eq 6
+      expect(grid.cells.first).to be_solved
+    end
+    it 'cell should not be able to solve itself when there is >1 candidate' do
+      grid.generate_neigbours(grid.cells.last)
+      grid.cells.last.solve
+      expect(grid.cells.last.value).to eq 0
+      expect(grid.cells.last).not_to be_solved
+    end
+    # it 'cell should not be able to solve itself when there is >1 candidate' do
+    #   grid.try_to_solve
+    #   expect(grid.cells.first.value).to eq 6
+    #   expect(grid.cells.first).to be_solved
+    # end
 
 
+  end
 
-
-
-
-  end 
 
 end

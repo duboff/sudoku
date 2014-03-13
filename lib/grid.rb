@@ -30,6 +30,16 @@ class Grid
     boxes
   end
 
+  def generate_neigbours(cell)
+    result = [] +
+                rows.select {|row| row.include?(cell) }.flatten +
+                cols.select {|col| col.include?(cell) }.flatten +
+                boxes.select {|box| box.include?(cell) }.flatten
+    cell.neighbours = result.map {|cell| cell.value}.uniq.sort
+  end
+
+
+
 
 
   # def solve

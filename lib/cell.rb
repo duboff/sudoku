@@ -1,19 +1,27 @@
 class Cell
-  attr_accessor :value
+  attr_accessor :value, :neighbours
 
 
   def initialize(val)
     @value = val
     @solved = value != 0
-    # @neighbours = neighbours # array of cells
+    @candidates = []
+    @neighbours = [] # array of cells
   end
 
   def solve
-    @solved = true
+    if candidates.size == 1
+      @value = candidates[0] 
+      @solved = true
+    end
   end
 
   def solved?
-    @solved
+    @solved 
+  end
+
+  def candidates
+    (1..9).to_a - neighbours
   end
 
 end

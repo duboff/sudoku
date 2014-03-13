@@ -18,8 +18,14 @@ describe Cell do
   end
 
   it 'changes status when solved' do
+    empty_cell.neighbours = (1..8).to_a
     empty_cell.solve
     expect(empty_cell).to be_solved
+  end
+
+  it 'candidates can be calculated from neighbours' do
+    cell.neighbours = [1,2,3,4,5,6,7,8]
+    expect(cell.candidates).to eq [9]
   end
 
 
