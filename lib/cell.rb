@@ -4,20 +4,16 @@ class Cell
 
   def initialize(val)
     @value = val
-    @solved = value != 0
     @candidates = []
     @neighbours = [] # array of cells
   end
 
   def solve
-    if candidates.size == 1
-      @value = candidates[0] 
-      @solved = true
-    end
+    @value = candidates.first if candidates.size == 1
   end
 
   def solved?
-    @solved 
+    value != 0
   end
 
   def candidates

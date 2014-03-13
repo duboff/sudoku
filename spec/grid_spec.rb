@@ -18,6 +18,9 @@ describe Grid do
     it 'should have a solved second cell with value 1' do
       expect(grid.cells[1].value).to eq 1 
     end
+    it 'should have a solved fifteenth cell with value 9' do
+      expect(grid.cells[15].value).to eq 9 
+    end
 
     it 'knows when it is solved' do
       solved_grid = Grid.new('123')
@@ -36,7 +39,7 @@ describe Grid do
     end
 
     it 'knows first row' do
-      expect(grid.rows.first[5].value).to eq 3
+      expect(grid.rows[1][6].value).to eq 9
     end
 
     it 'knows each column has 9 cells' do
@@ -55,8 +58,9 @@ describe Grid do
     it 'knows there are 9 boxes' do
       expect(grid.boxes.size).to eq 9
     end
-    it 'knows first box' do
+    it 'knows the right box' do
       expect(grid.boxes.first[7].value).to eq 7
+      # expect(grid.boxes[1][0].value).to eq 
     end
   end
 
@@ -64,11 +68,15 @@ describe Grid do
     it 'should correctly assign neighbours to a cell' do
       grid.generate_neigbours(grid.cells.first)
       expect(grid.cells.first.neighbours).to eq [1,5,0,3,2,4,9,8,7].sort
+      # grid.generate_neigbours(grid.cells[27])
+      # expect(grid.cells[27].neighbours).to eq [9,2,1,7,0,5,8,3].sort
     end
+
     it 'candidates should be generated correctly' do
       grid.generate_neigbours(grid.cells.first)
       expect(grid.cells.first.candidates).to eq [6]
     end
+
     it 'cell should be able to solve itself when there is 1 candidate' do
       grid.generate_neigbours(grid.cells.first)
       grid.cells.first.solve
@@ -81,14 +89,16 @@ describe Grid do
       expect(grid.cells.last.value).to eq 0
       expect(grid.cells.last).not_to be_solved
     end
-    # it 'cell should not be able to solve itself when there is >1 candidate' do
-    #   grid.try_to_solve
-    #   expect(grid.cells.first.value).to eq 6
-    #   expect(grid.cells.first).to be_solved
-    # end
+    it 'can solve board when one iteration required' do
+      another_grid = Grid.new('015493872308127956270568431496032517521706389783910264952681043864379105137254690')
+      another_grid.try_to_solve
+      expect(another_grid.to_s).to eq '615493872348127956279568431496832517521746389783915264952681743864379125137254698'
+    end
 
-
+    it 'can solve easy board' do
+      grid.solve
+      expect(grid).to be_solved
+      expect(grid.to_s).to eq '615493872348127956279568431496832517521746389783915264952681743864379125137254698'
+    end
   end
-
-
 end
