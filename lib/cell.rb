@@ -9,7 +9,7 @@ class Cell
   end
 
   def solve
-    @value = candidates.first if candidates.size == 1
+    @value = @candidates.first if candidates.size == 1
   end
 
   def solved?
@@ -17,7 +17,7 @@ class Cell
   end
 
   def candidates
-    (1..9).to_a - neighbours
+    @candidates = (1..9).to_a - neighbours
   end
 
 end

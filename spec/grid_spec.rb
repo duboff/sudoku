@@ -100,5 +100,14 @@ describe Grid do
       expect(grid).to be_solved
       expect(grid.to_s).to eq '615493872348127956279568431496832517521746389783915264952681743864379125137254698'
     end
+
   end
+  context 'Hard Sudoku' do
+    it 'can solve a hard board' do
+      hard_grid = Grid.new("800000000003600000070090200050007000000045700000100030001000068008500010090000400")
+      hard_grid.solve
+      expect(hard_grid).to be_solved
+    end
+  end
+
 end
