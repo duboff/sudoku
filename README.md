@@ -10,7 +10,7 @@ Open grid.rb (or type require 'path/grid.rb' in irb)
 
 To create new sudoku
 ```rb
-sudoku = Grid.new('1233223....')
+sudoku = Grid.new('123....321')
 ```
 To solve
 ```rb
