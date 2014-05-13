@@ -3,9 +3,13 @@ Sudoku Solver
 
 Week 4 Project @ Makers Academy
 
-Solves any kind of Sudoku.
+Solves any kind of Sudoku. The code includes a recursive algorithm to solve hard puzzles. The algorithm was later used for the [web version](https://github.com/duboff/Sudoku-web-version) which uses Sinatra.
 
-How to use:
+The goal of this project was to write an app in a TDD way with proper OOP design.
+
+
+##How to use:
+
 Open grid.rb (or type require 'path/grid.rb' in irb)
 
 To create new sudoku
