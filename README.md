@@ -1,5 +1,6 @@
 Sudoku Solver
 =============
+[![Code Climate](https://codeclimate.com/github/duboff/sudoku.png)](https://codeclimate.com/github/duboff/sudoku)
 
 Week 4 Project @ Makers Academy
 
